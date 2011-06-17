@@ -11,7 +11,7 @@
  */
 class Smarty_View extends Kohana_View {
 
-const VERSION = '0.9.1';
+const VERSION = '0.9.1+';
 
 // View filename
 protected $_file;
