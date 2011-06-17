@@ -17,8 +17,6 @@ public $template = 'smarty_demo_page.tpl';
 function action_index() {
   $view = View::factory('smarty_demo.tpl');
 
-//  $view = new View('smarty_demo.tpl');
-
   $view->var = 'A variable';
   $view->things = array(
     'First'  => 'One',
@@ -39,6 +37,5 @@ function action_index() {
   );
 
 }
-
 
 }

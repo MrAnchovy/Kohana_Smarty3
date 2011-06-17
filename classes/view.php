@@ -41,6 +41,10 @@ public function __construct($file = NULL, array $data = NULL) {
  * @return  View
  */
 public static function factory($file = NULL, array $data = NULL) {
+  // backwards compatibility - translate smarty:template to template.tpl
+  if ( substr($file, 0, 7)=='smarty:') {
+    $file = substr($file, 7).'.tpl';
+  }
   if ( self::is_smarty_template($file) ) {
     return Smarty_View::factory($file, $data);
   } else {
