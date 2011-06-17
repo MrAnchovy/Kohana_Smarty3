@@ -15,7 +15,7 @@ Release 0.9.1+ for Kohana 3 (3.0 and 3.1)
   just as you would with a regular PHP view.
 * That's all there is to it! There's only one hitch, you can't use
   `$view = new View('template_name.tpl')` or change the template of an existing
-  PHP view object to a Smarty template with $view->set_filename().
+  PHP view object to a Smarty template with `$view->set_filename()`.
 * If your controller extends the `Controller_Template` class, you can use a
   Smarty template for your page layout too - just set
   `public $template = 'layout_template_name.tpl';` in your controller class.
@@ -23,9 +23,9 @@ Release 0.9.1+ for Kohana 3 (3.0 and 3.1)
 ### How does this magic work?
 
 The Smarty module creates a `View` class that extends `Kohana_View` to intercept
-the View::factory() method and return an instance of either the unmodified
-Kohana_View for a PHP template or an instance of Smarty_View if the view file
-has the `.tpl` extension. Smarty_View implements the methods of Kohana_View to
+the `View::factory()` method and return an instance of either the unmodified
+`Kohana_View` for a PHP template or an instance of `Smarty_View` if the view file
+has the `.tpl` extension. `Smarty_View` implements the methods of `Kohana_View` to
 act on a Smarty object. If you are converting existing code, or just prefer to
 use the Smarty object directly, you can access it with `$view->smarty()`, but
 note that not all of the available methods have been tested and may produce
@@ -34,7 +34,7 @@ unpredicatable effects.
 ### More information
 
 Documentation and support for this module can be found on
-[Github](http://wiki.github.com/MrAnchovy/kohana-module-smarty3).
+[Github](http://wiki.github.com/MrAnchovy/Kohana_Smarty3).
 Support for Smarty and its standard plugins is of course on the
 [Smarty](http://www.smarty.net) site.
 
