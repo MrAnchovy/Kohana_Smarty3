@@ -31,6 +31,23 @@ public function __construct($file = NULL, array $data = NULL) {
 }
 
 /**
+ * Assigns a global variable by reference, similar to [View::bind], except
+ * that the variable will be accessible to all views.
+ *
+ *     View::bind_global($key, $value);
+ *
+ * @param   string  variable name
+ * @param   mixed   referenced variable
+ * @return  void
+ */
+public static function bind_global($key, & $value) {
+  View::$_global_data[$key] = &$value;
+  Smarty::$global_tpl_vars[$key] = new Smarty_variable($value, $nocache);
+  Smarty::$global_tpl_vars[$key]->value = &$value;
+  return $this;
+}
+
+/**
  * Returns a new View object. If you do not define the "file" parameter,
  * you must call [View::set_filename].
  *

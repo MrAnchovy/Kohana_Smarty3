@@ -146,22 +146,6 @@ public function bind($key, & $value) {
 }
 
 /**
- * Assigns a global variable by reference, similar to [View::bind], except
- * that the variable will be accessible to all views.
- *
- *     View::bind_global($key, $value);
- *
- * @param   string  variable name
- * @param   mixed   referenced variable
- * @return  void
- */
-public static function bind_global($key, & $value) {
-  Smarty::$global_tpl_vars[$key] = new Smarty_variable($value, $nocache);
-  Smarty::$global_tpl_vars[$key]->value = &$value;
-  return $this;
-}
-
-/**
  * Captures the output that is generated when a view is included.
  * The view data will be extracted to make local variables. This method
  * is static to prevent object scope resolution.
