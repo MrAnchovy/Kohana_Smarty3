@@ -217,77 +217,17 @@ public static function factory($file = NULL, array $data = NULL) {
 }
 
 /**
- * Sets a global variable, similar to [View::set], except that the
- * variable will be accessible to all views.
- *
- *     View::set_global($name, $value);
- *
- * @param   string  variable name or an array of variables
- * @param   mixed   value
- * @return  void
- */
-public static function set_global($key, $value = NULL) {
-  if ( is_array($key) ) {
-    foreach ($key as $key2=>$value) {
-      $this->_smarty->assignGlobal($key2, $value);
-    }
-  } else {
-     $this->_smarty->assignGlobal($key, $value);
-  }
-}
-
-/**
  * Returns the current smarty object, creating it and the prototype if necessary
  *
  * @return   Smarty object
  */
 public function smarty() {
 
-  // set time for benchmarking
-  $time = microtime(TRUE);
   // see if we need to set up the smarty object for this instance
   if ( $this->_smarty===NULL ) {
-    // see if we need to set up the prototype smarty object
-    if ( self::$_smarty_prototype===NULL ) {
-
-      // nearly everything can be done in the confif file
-      $config = Kohana::config('smarty');
-
-      // instantiate the prototype Smarty object
-      require_once($config->smarty_class_file);
-      $smarty = new Smarty;
-      self::$_smarty_prototype = $smarty;
-
-      // set up the prototype with options from config file
-      foreach ( $config->smarty_config as $key => $value ) {
-        $smarty->$key = $value;
-      }
-
-      // deal with config options that are not simple properties
-      $smarty->php_handling = constant($config->php_handling);
-
-      if ( $config->check_dirs ) {
-        // check we can write to the compiled templates directory
-        if ( !is_writeable($smarty->compile_dir) ) {
-          self::create_dir($smarty->compile_dir, 'Smarty compiled template');
-        }
-
-        // if smarty caching is enabled, check we can write to the cache directory
-        if ( $smarty->caching && !is_writeable($smarty->cache_dir) ) {
-          self::create_dir($smarty->cache_dir, 'Smarty cache');
-        }
-      }
-
-      // now assign useful globals
-      $smarty->assignGlobal('base_url', URL::base());
-      $smarty->assignGlobal('helper', new Smarty_Helper);
-
-      // and register useful plugins
-
-      // set timing for benchmark
-      self::$_init_time = microtime(TRUE) - $time;
-    }
-    $this->_smarty = clone self::$_smarty_prototype;
+    // set time for benchmarking
+    $time = microtime(TRUE);
+    $this->_smarty = clone self::smarty_prototype();
     $time = microtime(TRUE) - $time;
     $this->_clone_time = $time;
     self::$_total_clone_time += $time;
@@ -296,6 +236,56 @@ public function smarty() {
   return $this->_smarty;
 }
 
+/**
+ * Returns the smarty prototype object, creating it if necessary
+ *
+ * @return   Smarty prototype object
+ */
+public static function smarty_prototype() {
+  // set time for benchmarking
+  $time = microtime(TRUE);
+  // see if we need to set up the prototype smarty object
+  if ( self::$_smarty_prototype===NULL ) {
+
+    // nearly everything can be done in the confif file
+    $config = Kohana::config('smarty');
+
+    // instantiate the prototype Smarty object
+    require_once($config->smarty_class_file);
+    $smarty = new Smarty;
+    self::$_smarty_prototype = $smarty;
+
+    // set up the prototype with options from config file
+    foreach ( $config->smarty_config as $key => $value ) {
+      $smarty->$key = $value;
+    }
+
+    // deal with config options that are not simple properties
+    $smarty->php_handling = constant($config->php_handling);
+
+    if ( $config->check_dirs ) {
+      // check we can write to the compiled templates directory
+      if ( !is_writeable($smarty->compile_dir) ) {
+        self::create_dir($smarty->compile_dir, 'Smarty compiled template');
+      }
+
+      // if smarty caching is enabled, check we can write to the cache directory
+      if ( $smarty->caching && !is_writeable($smarty->cache_dir) ) {
+        self::create_dir($smarty->cache_dir, 'Smarty cache');
+      }
+    }
+
+    // now assign useful globals
+    $smarty->assignGlobal('base_url', URL::base());
+    $smarty->assignGlobal('helper', new Smarty_Helper);
+
+    // and register useful plugins
+
+    // set timing for benchmark
+    self::$_init_time = microtime(TRUE) - $time;
+  }
+  return self::$_smarty_prototype;
+}
 
 	/**
 	 * Sets the view filename.

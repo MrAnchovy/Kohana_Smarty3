@@ -79,4 +79,26 @@ public function set_filename($file) {
   return parent::set_filename($file);
 }
 
+/**
+ * Sets a global variable, similar to [View::set], except that the
+ * variable will be accessible to all views.
+ *
+ *     View::set_global($name, $value);
+ *
+ * @param   string  variable name or an array of variables
+ * @param   mixed   value
+ * @return  void
+ */
+public static function set_global($key, $value = NULL) {
+  if ( is_array($key) ) {
+    foreach ($key as $key2=>$value) {
+      View::$_global_data[$key2] = $value;
+      Smarty_View::smarty_prototype()->assignGlobal($key2, $value);
+    }
+  } else {
+    View::$_global_data[$key] = $value;
+    Smarty_View::smarty_prototype()->assignGlobal($key, $value);
+  }
+}
+
 }
