@@ -58,11 +58,15 @@ public static function bind_global($key, & $value) {
  * @return  View
  */
 public static function factory($file = NULL, array $data = NULL) {
-  // backwards compatibility - translate smarty:template to template.tpl
-  if ( substr($file, 0, 7)=='smarty:') {
-    $file = substr($file, 7).'.tpl';
-  }
   if ( self::is_smarty_template($file) ) {
+    // backwards compatibility - translate smarty:template to template.tpl
+    if ( substr($file, 0, 7)=='smarty:') {
+      if ( strlen($file)==7 ) {
+        $file = NULL;
+      } else {
+        $file = substr($file, 7).'.tpl';
+      }
+    }
     return Smarty_View::factory($file, $data);
   } else {
     return parent::factory($file, $data);
@@ -76,7 +80,7 @@ public static function factory($file = NULL, array $data = NULL) {
  * @return  bool    TRUE iff file appears to be a Smarty template
  */
 public static function is_smarty_template($file) {
-  return substr($file, -4, 4)=='.tpl';
+  return substr($file, -4, 4)=='.tpl' || substr($file, 0, 7)=='smarty:';
 }
 
 /**
