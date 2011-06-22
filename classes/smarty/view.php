@@ -4,6 +4,12 @@
  * Variables can be assigned with the view object and referenced locally within
  * the view.
  *
+ * @TODO       Refactor this to combine Smarty_View and Kohana_View implementations
+ *             of methods into a single class Smarty_Kohana_View (use a property
+ *             $_view_type with values NULL or Smarty_Kohana_View::TYPE_SMARTY)
+ *             and choose actions accordingly. You can then easily override the
+ *             class if you want.
+ *
  * @package    Smarty3
  * @author     Mr Anchovy
  * @copyright  (c) 2011 Mr Anchovy
@@ -287,9 +293,14 @@ public static function smarty_prototype() {
     }
     // $ext parameter set to '' for smarty .tpl extension in filename
     if ( ($path = Kohana::find_file('views', $file, ''))===FALSE ) {
-			throw new Kohana_View_Exception('The requested view :file could not be found', array(
-				':file' => $file,
-			));
+      // allow absolute (or relative) path to specify Smarty template
+      if ( file_exists($file) ) {
+        $path = $file;
+      } else {
+        throw new Kohana_View_Exception('The requested view :file could not be found', array(
+          ':file' => $file,
+        ));
+      }
 		}
 
 		// Store the file path locally
