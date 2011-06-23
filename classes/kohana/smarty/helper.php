@@ -9,6 +9,8 @@
  */
 class Kohana_Smarty_Helper {
 
+protected static $marks = array();
+
 /**
  * Report memory usage
  *
@@ -28,11 +30,41 @@ public function memory() {
  *                  1 => memory used in MB
  *                  2 => number of files included
  */
-public function stats($pattern=NULL) {
-  $stats = array(
-    (microtime(TRUE) - KOHANA_START_TIME) * 1000,
-    (memory_get_usage() - KOHANA_START_MEMORY) / 1048576,
+public function stats($pattern=NULL, $mark=NULL, $reset=NULL) {
+  $lap = array(
+    microtime(TRUE),
+    memory_get_usage(),
     count(get_included_files()),
+  );
+
+  $start = FALSE;
+
+  if ( $mark!==NULL ) {
+    if ( isset(Smarty_Helper::$marks[$mark]) ) {
+      // the mark is set so use it
+      $start = Smarty_Helper::$marks[$mark];
+      if ( $reset===TRUE ) {
+        // only reset it if we have been asked to
+        Smarty_Helper::$marks[$mark] = $lap;
+      }
+    } else {
+      // the mark is not set so set it ignoring $reset
+      Smarty_Helper::$marks[$mark] = $lap;
+    }
+  }
+
+  if ( $start===FALSE ) {
+    $start = array (
+      KOHANA_START_TIME,
+      KOHANA_START_MEMORY,
+      0,
+    );
+  }
+
+  $stats = array(
+    ($lap[0] - $start[0]) * 1000,
+    ($lap[1] - $start[1]) / 1048576,
+    $lap[2] - $start[2]
   );
   if ( $pattern===NULL ) {
     return $stats;

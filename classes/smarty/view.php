@@ -356,4 +356,20 @@ public function set($key, $value = NULL) {
   return $this;
 }
 
+/**
+ * Returns some benchmarking information.
+ *
+ * @return  array  see code
+ */
+public function stats() {
+
+  return array(
+    'clone_count'      => self::$_clone_count,      // how many times the Smarty object has been cloned
+    'clone_time'       => $this->_clone_time,       // time spent cloning this Smarty object
+    'init_time'        => self::$_init_time,        // how long it took to load Smarty
+    'total_clone_time' => self::$_total_clone_time, // total time spent cloning the Smarty object
+  );
+  
+}
+
 } // End View_Smarty

@@ -11,7 +11,7 @@
  * @copyright  (c) 2011 Mr Anchovy
  * @license    http://kohanaframework.org/license
  */
-Route::set('smarty', 'smarty(/<template>)')
+Route::set('smarty', 'smarty(/<controller>)')
 	->defaults(array(
 		'controller' => 'smartydemo',
 		'action'     => 'index',
