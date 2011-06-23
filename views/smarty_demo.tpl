@@ -32,7 +32,7 @@ The 'default' modifier
 </tr>
 
 <tr><th colspan="3" class="titlerow">
-The 'foreach' construct
+The 'foreach' construct: note the new $item@key syntax in Smarty3
 </th></tr>
 <tr>
 <td><pre>{capture assign="text"}{literal}
@@ -45,16 +45,16 @@ $view->things = array(
 
 <td><pre>{capture assign="text"}{literal}
 <ul>
-{foreach from=$things item=thevalue key=thekey}
-  <li>{$thekey}: {$thevalue}</li>
+{foreach from=$things item=thevalue}
+  <li>{$thevalue@key}: {$thevalue}</li>
 {/foreach}
 </ul>
 {/literal}{/capture}{$text|htmlspecialchars}</pre></td>
 
 <td>
 <ul>
-{foreach from=$things item=thevalue key=thekey}
-  <li>{$thekey}: {$thevalue}</li>
+{foreach from=$things item=thevalue}
+  <li>{$thevalue@key}: {$thevalue}</li>
 {/foreach}
 </ul>
 </td>
