@@ -237,8 +237,12 @@ public static function smarty_prototype() {
   // see if we need to set up the prototype smarty object
   if ( self::$_smarty_prototype===NULL ) {
 
-    // nearly everything can be done in the confif file
-    $config = Kohana::config('smarty');
+    // nearly everything can be done in the config file
+    if ( Kohana::VERSION > '3.2' ) {
+      $config = Kohana::$config->load('smarty');
+    } else {
+      $config = Kohana::config('smarty');
+    }
 
     // instantiate the prototype Smarty object
     require_once($config->smarty_class_file);
