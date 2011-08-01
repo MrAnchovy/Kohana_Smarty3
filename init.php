@@ -6,8 +6,6 @@
  *
  * @todo don't set route in production mode.
  *
- * @package    Smarty3
- * @author     Mr Anchovy
  * @copyright  (c) 2011 Mr Anchovy
  * @license    http://kohanaframework.org/license
  */
