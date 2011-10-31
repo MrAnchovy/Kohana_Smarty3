@@ -11,6 +11,9 @@
  */
 class View extends Kohana_View {
 
+public static $_smarty_is_loaded;
+public static $_global_bound_variables = array();
+
 /**
  * Sets the initial view filename and local data. Views should almost
  * always only be created using [View::factory].
@@ -42,9 +45,11 @@ public function __construct($file = NULL, array $data = NULL) {
  */
 public static function bind_global($key, & $value) {
   View::$_global_data[$key] = &$value;
-  Smarty::$global_tpl_vars[$key] = new Smarty_variable($value, $nocache);
-  Smarty::$global_tpl_vars[$key]->value = &$value;
-  return $this;
+  View::$_global_bound_variables[$key] = TRUE;
+  if ( self::$_smarty_is_loaded ) {
+    Smarty::$global_tpl_vars[$key] = new Smarty_variable($value);
+    Smarty::$global_tpl_vars[$key]->value = &$value;
+  }
 }
 
 /**
@@ -114,11 +119,15 @@ public static function set_global($key, $value = NULL) {
   if ( is_array($key) ) {
     foreach ($key as $key2=>$value) {
       View::$_global_data[$key2] = $value;
-      Smarty_View::smarty_prototype()->assignGlobal($key2, $value);
+      if ( self::$_smarty_is_loaded ) {
+        Smarty_View::smarty_prototype()->assignGlobal($key2, $value);
+      }
     }
   } else {
     View::$_global_data[$key] = $value;
-    Smarty_View::smarty_prototype()->assignGlobal($key, $value);
+    if ( self::$_smarty_is_loaded ) {
+      Smarty_View::smarty_prototype()->assignGlobal($key, $value);
+    }
   }
 }
 

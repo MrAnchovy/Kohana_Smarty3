@@ -2,6 +2,6 @@
 
 return array(
   'tests_path'  => array(
-    'smarty3' => realpath(dirname(__FILE__).'/..').'/simpletests',
+    'smarty3' => realpath(dirname(__FILE__).'/..').DIRECTORY_SEPARATOR.'simpletests',
   ),
 );

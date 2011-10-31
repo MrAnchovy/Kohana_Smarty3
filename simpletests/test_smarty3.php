@@ -1,6 +1,29 @@
-<?php
-
+<?php defined('SYSPATH') or die('No direct access allowed.');
+/**
+ * @package    Smarty
+ * @category   Tests
+ * @author     Mr Anchovy
+ * @copyright  (c) 2011 Mr Anchovy
+ * @license    http://opensource.org/licenses/ISC
+ */
 class Test_Smarty3 extends UnitTestCase {
+
+function test_php_view_functions_still_work() {
+  // IMPORTANT do this first, before the Smarty class autoloader is in scope
+  try {
+    $random = md5(microtime());
+    View::bind_global('global_bound_variable', $random);
+    View::set_global('global_variable', $random);
+    $view = View::factory('smarty_test/test_php');
+    $view->variable = $random;
+    $view->bind('bound_variable', $random);
+    $ok = TRUE;
+  } catch (Exception $e) {
+    $ok = FALSE;
+    throw $e;
+  }
+  $this->assertTrue($ok, 'There should be no exceptions');
+}
 
 function test_can_load_smarty_template() {
   // these templates are in smarty3/views
@@ -96,6 +119,22 @@ function test_smarty_bound_variable_is_local() {
   $this->assertNoPattern("/$random/", $output, "Output should not contain $random");
 }
 
+function test_global_bound_view_variable_is_global_and_bound_in_smarty() {
+  $random = md5(microtime());
+  View::bind_global('global_variable', $random);
+  $view = View::factory('smarty_test/test.tpl');
+  $random = md5($random);
+  $output = $view->render();
+  $this->assertPattern("/Global variable \[$random\]/", $output, "Output should contain Global variable [$random]");
 }
 
+function test_global_bound_view_variable_is_global_and_bound_in_php() {
+  $random = md5(microtime());
+  View::bind_global('global_variable', $random);
+  $view = View::factory('smarty_test/test_php');
+  $random = md5($random);
+  $output = $view->render();
+  $this->assertPattern("/PHP Global variable \[$random\]/", $output, "Output should contain PHP Global variable [$random]");
+}
 
+}

@@ -17,7 +17,7 @@
  */
 class Smarty_View extends Kohana_View {
 
-const VERSION = '0.9.2+';
+const VERSION = '0.9.3';
 
 // View filename
 protected $_file;
@@ -273,7 +273,21 @@ public static function smarty_prototype() {
     $smarty->assignGlobal('base_url', URL::base());
     $smarty->assignGlobal('helper', new Smarty_Helper);
 
+    $bound = View::$_global_bound_variables;
+    // register any globals
+    foreach ( View::$_global_data as $key=>$value ) {
+      if ( isset($bound[$key]) ) {
+        Smarty::$global_tpl_vars[$key] = new Smarty_variable($value);
+        Smarty::$global_tpl_vars[$key]->value = &$value;
+      } else {
+        $smarty->assignGlobal($key, $value);
+      }
+    }
+
     // and register useful plugins
+
+    // add to registered template engines
+    View::$_smarty_is_loaded = TRUE;
 
     // set timing for benchmark
     self::$_init_time = microtime(TRUE) - $time;
