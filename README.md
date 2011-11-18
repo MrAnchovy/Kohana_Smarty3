@@ -3,7 +3,13 @@
 This is a module for the [Kohana PHP framework](http://kohanaphp.com/) that
 integrates the [Smarty Template Engine](http://www.smarty.net/).
 
-Release 0.9.2+ for Kohana 3 (3.0, 3.1 and 3.2)
+Release 0.9.3+ for Kohana 3 (3.0, 3.1 and 3.2)
+
+### Upgrading from earlier releases
+
+This release is not compatible with templates compiled by earlier releases.
+Make sure you delete your compiled templates (in `APPPATH/cache/smarty_compiled`
+by default) after installing the update.
 
 ### Quick Start
 
