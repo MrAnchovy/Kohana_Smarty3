@@ -8,8 +8,9 @@ $modpath = realpath(dirname(__FILE__).'/..');
 
 return array (
 
-  // change this for testing alternative Smarty versions
-  'smarty_class_file' => "$modpath/smarty/libs/Smarty.class.php",
+  // this is now set using Kohana::find_file but you can override it here
+  // 'smarty_class_file' => "$modpath/vendor/smarty/libs/Smarty.class.php",
+  'smarty_class_file' => NULL,
 
   // Don't bother to check writablity of compile directory in production mode
   'check_dirs' => !(Kohana::$environment==Kohana::PRODUCTION),
@@ -22,10 +23,6 @@ return array (
 
   // most config settings can be made in this automagically handled array
   'smarty_config' => array(
-
-    // This is new in Smarty3 and FALSE by default which may break existing
-    // templates and prevent desired functionality
-    'allow_php_tag'   => FALSE,
 
     // auto literal on delimiters with whitspace
     // new in Smarty 3 and very useful for inline CSS but may break existing templates
@@ -61,7 +58,7 @@ return array (
     'plugins_dir'     =>  array(
       APPPATH.'smarty_plugins',
       "$modpath/smarty_plugins",
-      "$modpath/smarty/libs/plugins",
+      "$modpath/smarty/libs/plugins", // TODO set this in the class
     ),
 
     // If you want to use smarty config files, put them in this place

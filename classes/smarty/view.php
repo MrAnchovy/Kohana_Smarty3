@@ -17,7 +17,7 @@
  */
 class Smarty_View extends Kohana_View {
 
-const VERSION = '0.9.3';
+const VERSION = '0.9.3+';
 
 // View filename
 protected $_file;
@@ -44,6 +44,11 @@ protected static $_init_time;
  * Smarty object instance for current template
  */
 protected $_smarty;
+
+/**
+ * Directory containing Smarty.class.php
+ */
+protected static $_smarty_path;
 
 /**
  * Prototype Smarty object to be initialised once and cloned for each template
@@ -244,8 +249,16 @@ public static function smarty_prototype() {
       $config = Kohana::config('smarty');
     }
 
+    // locate Smarty.class.php
+    if ( !($file = $config->smarty_class_file) ) {
+      $file = Kohana::find_file('vendor', 'smarty/libs/Smarty.class');
+    }
+    require_once($file);
+
+    // save the location in case we have more than one Smarty version around
+    self::$_smarty_path = realpath(dirname($file)).DIRECTORY_SEPARATOR;
+
     // instantiate the prototype Smarty object
-    require_once($config->smarty_class_file);
     $smarty = new Smarty;
     self::$_smarty_prototype = $smarty;
 
@@ -256,6 +269,9 @@ public static function smarty_prototype() {
 
     // deal with config options that are not simple properties
     $smarty->php_handling = constant($config->php_handling);
+
+    // add the path to the plugins for the located Smarty distro
+    $smarty->addPluginsDir(self::$_smarty_path.'plugins');
 
     if ( $config->check_dirs ) {
       // check we can write to the compiled templates directory
