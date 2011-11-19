@@ -3,7 +3,7 @@
 This is a module for the [Kohana PHP framework](http://kohanaphp.com/) that
 integrates the [Smarty Template Engine](http://www.smarty.net/).
 
-Release 0.9.3+ for Kohana 3 (3.0, 3.1 and 3.2)
+Release 0.9.4 for Kohana 3 (3.0, 3.1 and 3.2)
 
 ### Upgrading from earlier releases
 
