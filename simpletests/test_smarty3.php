@@ -148,7 +148,7 @@ function test_smarty_include_different_module() {
   $view = View::factory('smarty_test/test_view_path.tpl');
   $view->variable = $random = md5(microtime());
   $output = $view->render();
-  $this->assertPattern("/Variable \[$random\]/", $output, "Output should contain Variable [$random]|%s");
+  $this->assertPattern("/Template in simpletest\/views \[$random\]/", $output, "Output should contain 'Template in simpletest/views [$random']|%s");
 }
 
 function test_template_inheritance() {
