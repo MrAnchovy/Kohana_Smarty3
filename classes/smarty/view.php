@@ -273,6 +273,9 @@ public static function smarty_prototype() {
     // add the path to the plugins for the located Smarty distro
     $smarty->addPluginsDir(self::$_smarty_path.'plugins');
 
+    // add views directories for all loaded modules (including Smarty3)
+    $smarty->addTemplateDir(array_values(Kohana::modules()));
+
     if ( $config->check_dirs ) {
       // check we can write to the compiled templates directory
       if ( !is_writeable($smarty->compile_dir) ) {

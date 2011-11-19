@@ -45,9 +45,10 @@ return array (
     // ... and the smarty cache (only used if it is enabled)
     'cache_dir'       => Kohana::$cache_dir . '/smarty_cache',
 
-    // TODO think about some theme overriding. At the moment the Kohana interface
-    // provides an absolute path to template files, but the path here needs to be
-    // set for the smarty {include} function
+    // module 'views' directories are added when initialising, but
+    // you can put additional ones (which are searched first) here. Note that this
+    // is only used by Smarty's include and template inheritance functions, 
+    // View::factory() uses Kohana::find_file()
     'template_dir'    =>  array(
       APPPATH.'views',
       "$modpath/views",
@@ -58,11 +59,10 @@ return array (
     'plugins_dir'     =>  array(
       APPPATH.'smarty_plugins',
       "$modpath/smarty_plugins",
-      "$modpath/smarty/libs/plugins", // TODO set this in the class
     ),
 
     // If you want to use smarty config files, put them in this place
     'config_dir'      =>  APPPATH.'smarty_config',
-  ),
+    ),
 
 );
