@@ -1,0 +1,2 @@
+
+Parent template provided [{$variable}]
