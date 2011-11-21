@@ -51,7 +51,6 @@ return array (
     // View::factory() uses Kohana::find_file()
     'template_dir'    =>  array(
       APPPATH.'views',
-      "$modpath/views",
     ),
 
     // TODO need to create some useful Kohana plugins. Investigate whether

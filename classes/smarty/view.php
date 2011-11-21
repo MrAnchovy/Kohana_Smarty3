@@ -272,9 +272,12 @@ public static function smarty_prototype() {
 
     // add the path to the plugins for the located Smarty distro
     $smarty->addPluginsDir(self::$_smarty_path.'plugins');
-
     // add views directories for all loaded modules (including Smarty3)
-    $smarty->addTemplateDir(array_values(Kohana::modules()));
+    $dirs = array();
+    foreach ( Kohana::modules() as $dir ) {
+//      $dirs[] = "{$dir}views";
+    }
+    $smarty->addTemplateDir($dirs);
 
     if ( $config->check_dirs ) {
       // check we can write to the compiled templates directory
@@ -314,19 +317,19 @@ public static function smarty_prototype() {
   return self::$_smarty_prototype;
 }
 
-	/**
-	 * Sets the view filename.
-	 *
-	 *     $view->set_filename($file);
-	 *
-	 * @param   string  view filename
-	 * @return  View
-	 * @throws  Kohana_View_Exception
-	 */
-	public function set_filename($file) {
+/**
+ * Sets the view filename.
+ *
+ *     $view->set_filename($file);
+ *
+ * @param   string  view filename
+ * @return  View
+ * @throws  Kohana_View_Exception
+ */
+public function set_filename($file) {
     if ( !View::is_smarty_template($file) ) {
       throw new Kohana_Exception('Cannot use set_filename to change from a Smarty template to :tpl.',
-			array(':tpl' => $file));
+        array(':tpl' => $file));
     }
     // $ext parameter set to '' for smarty .tpl extension in filename
     if ( ($path = Kohana::find_file('views', $file, ''))===FALSE ) {
@@ -338,13 +341,13 @@ public static function smarty_prototype() {
           ':file' => $file,
         ));
       }
-		}
+}
 
-		// Store the file path locally
-		$this->_file = $path;
+  // Store the file path locally
+  $this->_file = $path;
 
-		return $this;
-	}
+  return $this;
+}
 
 /**
  * Renders the view object to a string. Global and local data are merged
