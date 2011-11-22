@@ -5,6 +5,14 @@ integrates the [Smarty Template Engine](http://www.smarty.net/).
 
 Release 0.9.4+ for Kohana 3 (3.0, 3.1 and 3.2) with Smarty 3.1.5
 
+### Installation
+
+* Download and unpack the module
+* Put it in your modules directory. You can rename it with your own name
+  or something like `smarty3`, but remember we need this directory name on next step
+* Now enable the new `smarty3` module on `APPPATH/bootstrap.php` with something like
+  `'smarty3'  => MODPATH.'smarty3',`
+
 ### Upgrading from earlier releases
 
 This release is not compatible with templates compiled by earlier releases.
@@ -13,8 +21,6 @@ by default) after installing the update.
 
 ### Quick Start
 
-* Download and unpack the module, put it in your modules directory and enable
-  it in your bootstrap file.
 * To use Smarty for a view you need to create a Smarty template
   `template_name.tpl` in your application's views directory. Then when you do
   `$view = View::factory('template_name.tpl')` you can use the $view object
@@ -40,7 +46,7 @@ unpredicatable effects.
 ### More information
 
 Documentation and support for this module can be found on
-[Github](https://github.com/MrAnchovy/Kohana_Smarty3/wiki).
+[Wiki of this Project at Github](https://github.com/MrAnchovy/Kohana_Smarty3/wiki).
 Support for Smarty and its standard plugins is of course on the
 [Smarty](http://www.smarty.net) site.
 
