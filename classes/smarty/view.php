@@ -42,6 +42,7 @@ protected static $_init_time;
 
 /**
  * Smarty object instance for current template
+ * @var Smarty
  */
 protected $_smarty;
 
@@ -281,13 +282,13 @@ public static function smarty_prototype() {
 
     if ( $config->check_dirs ) {
       // check we can write to the compiled templates directory
-      if ( !is_writeable($smarty->compile_dir) ) {
-        self::create_dir($smarty->compile_dir, 'Smarty compiled template');
+      if ( !is_writeable($smarty->getCompileDir()) ) {
+        self::create_dir($smarty->getCompileDir(), 'Smarty compiled template');
       }
 
       // if smarty caching is enabled, check we can write to the cache directory
-      if ( $smarty->caching && !is_writeable($smarty->cache_dir) ) {
-        self::create_dir($smarty->cache_dir, 'Smarty cache');
+      if ( $smarty->caching && !is_writeable($smarty->getCacheDir()) ) {
+        self::create_dir($smarty->getCacheDir(), 'Smarty cache');
       }
     }
 
@@ -347,6 +348,10 @@ public function set_filename($file) {
   $this->_file = $path;
 
   return $this;
+}
+
+public function get_filename(){
+    return $this->_file;
 }
 
 /**
