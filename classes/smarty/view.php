@@ -140,7 +140,7 @@ class Smarty_View extends Kohana_View
             $smarty->assignGlobal($key,$value);
         }
 
-        $tpl = &$smarty->fetch($kohana_view_filename);
+        $tpl = $smarty->fetch($kohana_view_filename);
         $smarty->clearAllAssign();
         return $tpl;
     }
