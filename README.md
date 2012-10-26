@@ -3,28 +3,37 @@
 This is a module for the [Kohana PHP framework](http://kohanaphp.com/) that
 integrates the [Smarty Template Engine](http://www.smarty.net/).
 
-Release 0.9.5 for Kohana 3 (3.0, 3.1 and 3.2) with Smarty 3.1.5
+Working version 1.0.0
 
-### Upgrading from earlier releases
-
-This release is not compatible with templates compiled by earlier releases.
-Make sure you delete your compiled templates (in `APPPATH/cache/smarty_compiled`
-by default) after installing the update.
+Documentation and support for this module can be found on
+[Github](https://github.com/MrAnchovy/Kohana_Smarty3/wiki).
 
 ### Quick Start
 
-* Download and unpack the module, put it in your modules directory and enable
-  it in your bootstrap file.
-* To use Smarty for a view you need to create a Smarty template
+- Download and unpack the module
+- Put the smarty3 module in your modules directory
+- Enable the smarty3 module in your bootstrap file
+- To use Smarty for a view you need to create a Smarty template
   `template_name.tpl` in your application's views directory. Then when you do
   `$view = View::factory('template_name.tpl')` you can use the $view object
   just as you would with a regular PHP view.
-* That's all there is to it! There's only one hitch, you can't use
+- That's all there is to it! There's only one hitch, you can't use
   `$view = new View('template_name.tpl')` or change the template of an existing
   PHP view object to a Smarty template with `$view->set_filename()`.
-* If your controller extends the `Controller_Template` class, you can use a
+- If your controller extends the `Controller_Template` class, you can use a
   Smarty template for your page layout too - just set
   `public $template = 'layout_template_name.tpl';` in your controller class.
+
+### Version history
+
+* Version 1 (1.x.x) for Kohana 3.0, 3.1 and 3.2
+* Version 2 (2.x.x) for Kohana 3.3
+
+### Upgrading from earlier Version 1 releases
+
+- Download and unpack the module
+- Replace the existing smarty3 module with the new version
+- Delete compiled templates (in `APPPATH/cache/smarty_compiled` by default)
 
 ### How does this magic work?
 
@@ -46,8 +55,15 @@ Support for Smarty and its standard plugins is of course on the
 
 ### Copyright
 
-The Smarty module is copyright 2009-11 Mr Anchovy <http://www.mranchovy.com>
+* The Smarty module is Copyright (c) 2009-12 Mr Anchovy <http://www.mranchovy.com>
+* Kohana is Copyright (c) 2007-2012 Kohana Team <http://kohanaphp.com/license.html>  
+* Smarty is Copyright (c) 2001-2012 New Digital Group, Inc.
 
-Kohana is copyright 2008-2011 Kohana Team <http://kohanaphp.com/license.html>  
+### Licence
 
-Smarty is copyright 2001-2011 New Digital Group, Inc.
+This distribution of the Smarty3 Module for Kohana is released under the
+[Kohana License](http://kohanaframework.org/license)
+
+The distribution of Smarty included in this package is released under the
+GNU Lesser General Public License (LGPL) - see the Smarty documentation for
+more details.
