@@ -3,7 +3,9 @@
 This is a module for the [Kohana PHP framework](http://kohanaphp.com/) that
 integrates the [Smarty Template Engine](http://www.smarty.net/).
 
-Working version 1.0.0
+Version 1 release 1.0.1.
+This version is compatible with Kohana 3.0-3.2. See the live documentation for
+[other versions](https://github.com/MrAnchovy/Kohana_Smarty3/wiki/Version-history).
 
 Documentation and support for this module can be found on
 [Github](https://github.com/MrAnchovy/Kohana_Smarty3/wiki).
@@ -23,11 +25,6 @@ Documentation and support for this module can be found on
 - If your controller extends the `Controller_Template` class, you can use a
   Smarty template for your page layout too - just set
   `public $template = 'layout_template_name.tpl';` in your controller class.
-
-### Version history
-
-* Version 1 (1.x.x) for Kohana 3.0, 3.1 and 3.2
-* Version 2 (2.x.x) for Kohana 3.3
 
 ### Upgrading from earlier Version 1 releases
 
