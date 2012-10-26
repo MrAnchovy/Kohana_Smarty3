@@ -10,14 +10,15 @@
  *             and choose actions accordingly. You can then easily override the
  *             class if you want.
  *
- * @package    Smarty3
- * @author     Mr Anchovy
- * @copyright  (c) 2011 Mr Anchovy
- * @license    http://kohanaframework.org/license
+ * @package   Smarty3
+ * @author    Mr Anchovy
+ * @copyright (c) 2011-12 Mr Anchovy
+ * @license   http://kohanaframework.org/license
+ * @version   1.0.1
  */
 class Smarty_View extends Kohana_View {
 
-const VERSION = '0.9.4+';
+const VERSION = '1.0.1';
 
 // View filename
 protected $_file;
