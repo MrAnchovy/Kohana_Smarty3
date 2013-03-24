@@ -128,7 +128,10 @@ class Smarty_View extends Kohana_View
             return parent::capture($kohana_view_filename,$kohana_view_data);
         }
 
+
         //Now, for those smarty guys
+        $t = Profiler::start('Smarty','Render '.Kohana_Debug::path($kohana_view_filename));
+
         $smarty = self::smarty_prototype();
         foreach($kohana_view_data as $key => $value)
         {
@@ -142,6 +145,9 @@ class Smarty_View extends Kohana_View
 
         $tpl = $smarty->fetch($kohana_view_filename);
         $smarty->clearAllAssign();
+
+        Profiler::stop($t);
+
         return $tpl;
     }
 
