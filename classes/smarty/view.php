@@ -88,7 +88,10 @@ class Smarty_View extends Kohana_View
             // add views directories for all loaded modules (including Smarty3)
             $dirs = array();
             foreach (Kohana::modules() as $dir) {
-                $dirs[] = "{$dir}views";
+                if (is_dir($dir.'/views'))
+                {
+                    $dirs[] = "{$dir}views";
+                }
             }
             $smarty->addTemplateDir($dirs);
 
