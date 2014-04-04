@@ -250,15 +250,6 @@ public static function smarty_prototype() {
       $config = Kohana::config('smarty');
     }
 
-    // locate Smarty.class.php
-    if ( !($file = $config->smarty_class_file) ) {
-      $file = Kohana::find_file('vendor', 'smarty/libs/Smarty.class');
-    }
-    require_once($file);
-
-    // save the location in case we have more than one Smarty version around
-    self::$_smarty_path = realpath(dirname($file)).DIRECTORY_SEPARATOR;
-
     // instantiate the prototype Smarty object
     $smarty = new Smarty;
     self::$_smarty_prototype = $smarty;
@@ -271,8 +262,6 @@ public static function smarty_prototype() {
     // deal with config options that are not simple properties
     $smarty->php_handling = constant($config->php_handling);
 
-    // add the path to the plugins for the located Smarty distro
-    $smarty->addPluginsDir(self::$_smarty_path.'plugins');
     // add views directories for all loaded modules (including Smarty3)
     $dirs = array();
     foreach ( Kohana::modules() as $dir ) {
