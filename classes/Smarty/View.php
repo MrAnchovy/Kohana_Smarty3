@@ -14,11 +14,11 @@
  * @author    Mr Anchovy
  * @copyright (c) 2011-12 Mr Anchovy
  * @license   http://kohanaframework.org/license
- * @version   2.0.0
+ * @version   2.0.1-dev
  */
 class Smarty_View extends Kohana_View {
 
-const VERSION = '2.0.0';
+const VERSION = '2.0.1-dev';
 
 // View filename
 protected $_file;
