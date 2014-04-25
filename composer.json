@@ -3,5 +3,5 @@
     "description": "Integration of Smarty v3 with the Kohana PHP Framework",
     "keywords":    ["smarty", "kohana"],
     "homepage":    "http://github.com/MrAnchovy/Kohana_Smarty3",
-    "license":     "Kohana license http://kohanaframework.org/license",
+    "license":     "Kohana license http://kohanaframework.org/license"
 }
