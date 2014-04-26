@@ -5,11 +5,12 @@ integrates the [Smarty Template Engine](http://www.smarty.net/).
 
 Version 2.0.1-dev
 
-This version is compatible with Kohana 3.3. For Kohana 3.0-3.2 you want the
-[1.x branch](https://github.com/MrAnchovy/Kohana_Smarty3/tree/1.x-for-Kohana-3.0-3.2).
-
 Documentation and support for this module can be found on
 [Github](https://github.com/MrAnchovy/Kohana_Smarty3).
+Note this version is compatible with Kohana 3.3. For Kohana 3.0-3.2 you want the
+[1.x branch](https://github.com/MrAnchovy/Kohana_Smarty3/tree/1.x-for-Kohana-3.0-3.2).
+
+**Version 2.0.1**
 
 ### Quick Start
 
