@@ -12,7 +12,7 @@
 if ( Kohana::$environment!==Kohana::PRODUCTION ) {
 	Route::set('smarty', 'smarty(/<controller>)')
 		->defaults(array(
-			'controller' => 'smartydemo',
+			'controller' => 'SmartyDemo',
 			'action'     => 'index',
 		));
 }
