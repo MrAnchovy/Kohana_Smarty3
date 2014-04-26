@@ -14,11 +14,11 @@
  * @author    Mr Anchovy
  * @copyright (c) 2011-12 Mr Anchovy
  * @license   http://kohanaframework.org/license
- * @version   2.0.1
+ * @version   2.0.2-dev
  */
 class Smarty_View extends Kohana_View {
 
-const VERSION = '2.0.1';
+const VERSION = '2.0.2-dev';
 
 // View filename
 protected $_file;
@@ -250,14 +250,21 @@ public static function smarty_prototype() {
       $config = Kohana::config('smarty');
     }
 
-    // locate Smarty.class.php
-    if ( !($file = $config->smarty_class_file) ) {
-      $file = Kohana::find_file('vendor', 'smarty/libs/Smarty.class');
+    // locate a Smarty class - first check if it is already loaded
+    if ( !class_exists('Smarty', false) ) {
+      // next check if a path is set in config/smarty.php
+      if ( $file = $config->smarty_class_file ) {
+        require_once($file);
+        // save the location in case we have more than one Smarty version around
+        self::$_smarty_path = realpath(dirname($file)).DIRECTORY_SEPARATOR;
+      } elseif ( !class_exists('Smarty') ) { // try and autoload it
+        // if it doesn't autoload, fall back to letting Kohana find the bundled version
+        $file = Kohana::find_file('vendor', 'smarty/libs/Smarty.class');
+        require_once($file);
+        // save the location in case we have more than one Smarty version around
+        self::$_smarty_path = realpath(dirname($file)).DIRECTORY_SEPARATOR;
+      }
     }
-    require_once($file);
-
-    // save the location in case we have more than one Smarty version around
-    self::$_smarty_path = realpath(dirname($file)).DIRECTORY_SEPARATOR;
 
     // instantiate the prototype Smarty object
     $smarty = new Smarty;
