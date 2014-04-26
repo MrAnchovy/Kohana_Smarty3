@@ -1,0 +1,7 @@
+{
+    "name":        "mranchovy/smarty3",
+    "description": "Integration of Smarty v3 with the Kohana PHP Framework",
+    "keywords":    ["smarty", "kohana"],
+    "homepage":    "http://github.com/MrAnchovy/Kohana_Smarty3",
+    "license":     "Kohana license"
+}
