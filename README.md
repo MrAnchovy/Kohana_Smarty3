@@ -3,13 +3,12 @@
 This is a module for the [Kohana PHP framework](http://kohanaphp.com/) that
 integrates the [Smarty Template Engine](http://www.smarty.net/).
 
-Version 1 release 1.0.1
-
-This version is compatible with Kohana 3.0-3.2. See the live documentation for
-[other versions](https://github.com/MrAnchovy/Kohana_Smarty3/wiki/Version-history).
-
 Documentation and support for this module can be found on
-[Github](https://github.com/MrAnchovy/Kohana_Smarty3/wiki).
+[Github](https://github.com/MrAnchovy/Kohana_Smarty3).
+Note this version is compatible with Kohana 3.0-3.2. For Kohana 3.3 you want the
+[2.x branch](https://github.com/MrAnchovy/Kohana_Smarty3).
+
+**Version 1.0.2-dev**
 
 ### Quick Start
 
@@ -27,7 +26,7 @@ Documentation and support for this module can be found on
   Smarty template for your page layout too - just set
   `public $template = 'layout_template_name.tpl';` in your controller class.
 
-### Upgrading from earlier Version 1 releases
+### Upgrading from older versions
 
 - Download and unpack the module
 - Replace the existing smarty3 module with the new version
@@ -47,15 +46,15 @@ unpredicatable effects.
 ### More information
 
 Documentation and support for this module can be found on
-[Github](https://github.com/MrAnchovy/Kohana_Smarty3/wiki).
+[Github](https://github.com/MrAnchovy/Kohana_Smarty3).
 Support for Smarty and its standard plugins is of course on the
 [Smarty](http://www.smarty.net) site.
 
 ### Copyright
 
-* The Smarty module is Copyright (c) 2009-12 Mr Anchovy <http://www.mranchovy.com>
-* Kohana is Copyright (c) 2007-2012 Kohana Team <http://kohanaphp.com/license.html>  
-* Smarty is Copyright (c) 2001-2012 New Digital Group, Inc.
+* The Smarty module is Copyright © 2009-14 [Mr Anchovy](http://www.mranchovy.com/).
+* Kohana is Copyright © 2007-2014 [Kohana Team](http://kohanaframework.org/).  
+* Smarty is Copyright © 2001-2014 [New Digital Group, Inc.](http://www.smarty.net/).
 
 ### Licence
 
