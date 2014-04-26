@@ -276,7 +276,7 @@ public static function smarty_prototype() {
     // add views directories for all loaded modules (including Smarty3)
     $dirs = array();
     foreach ( Kohana::modules() as $dir ) {
-//      $dirs[] = "{$dir}views";
+      $dirs[] = "{$dir}views";
     }
     $smarty->addTemplateDir($dirs);
 
