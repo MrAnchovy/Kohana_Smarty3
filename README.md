@@ -8,7 +8,7 @@ Documentation and support for this module can be found on
 Note this version is compatible with Kohana 3.0-3.2. For Kohana 3.3 you want the
 [2.x branch](https://github.com/MrAnchovy/Kohana_Smarty3).
 
-**Version 1.0.2-dev**
+**Version 1.0.2**
 
 ### Quick Start
 
