@@ -8,7 +8,7 @@ Documentation and support for this module can be found on
 Note this version is compatible with Kohana 3.0-3.2. For Kohana 3.3 you want the
 [2.x branch](https://github.com/MrAnchovy/Kohana_Smarty3).
 
-**Version 1.0.2**
+**Version 1.0.3-dev**
 
 ### Quick Start
 
@@ -52,7 +52,7 @@ Support for Smarty and its standard plugins is of course on the
 
 ### Copyright
 
-* The Smarty module is Copyright © 2009-14 [Mr Anchovy](http://www.mranchovy.com/).
+* The Smarty module is Copyright © 2009-2014 [Mr Anchovy](http://www.mranchovy.com/).
 * Kohana is Copyright © 2007-2014 [Kohana Team](http://kohanaframework.org/).  
 * Smarty is Copyright © 2001-2014 [New Digital Group, Inc.](http://www.smarty.net/).
 
